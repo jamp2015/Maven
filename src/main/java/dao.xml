@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop = "http://www.springframework.org/schema/aop"
+	xmlns:p = "http://www.springframework.org/schema/p"
+	xmlns:c = "http://www.springframework.org/schema/c"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+ 		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+   <aop:aspectj-autoproxy />
+		
+	<import resource = "model.xml" />
+
+	<bean id="usersDaoMap" class="com.cinema.manager.controller.dao.memory.UsersDaoMapImpl">
+		<constructor-arg ref = "users" />
+	</bean>
+	
+<!-- <bean id="auditoriumDao" class="com.cinema.manager.controller.dao.memory.AuditoriumDaoImpl">
+		<constructor-arg ref = "auditoriums" />
+	</bean> -->
+	
+	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.database.AuditoriumDaoDBImpl">
+	</bean>
+	
+<!-- 	<bean id="eventDao" class="com.cinema.manager.controller.dao.memory.EventDaoImpl">
+		<constructor-arg ref = "eventsMap" />
+	</bean> -->
+	
+	<bean id="eventDao" class="com.cinema.manager.controller.dao.database.EventDaoDBImpl">
+	</bean>
+	
+	<bean id="bookingDao" class="com.cinema.manager.controller.dao.memory.BookingDaoImpl" />
+	
+	<bean id="ticketDao" class="com.cinema.manager.controller.dao.memory.TicketDaoImpl">
+		<constructor-arg ref = "ticketsMap" />
+	</bean>
+	
+</beans>

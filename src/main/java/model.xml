@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop = "http://www.springframework.org/schema/aop"
+	xmlns:p = "http://www.springframework.org/schema/p"
+	xmlns:c = "http://www.springframework.org/schema/c"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+ 		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+   <aop:aspectj-autoproxy />
+		
+	<!-- Auditoriums -->
+	<util:properties id="props_auditorium_1" location="classpath:com/cinema/manager/resources/auditorium_1.properties"/>	
+	<util:properties id="props_auditorium_2" location="classpath:com/cinema/manager/resources/auditorium_2.properties"/>	
+	<util:properties id="props_auditorium_3" location="classpath:com/cinema/manager/resources/auditorium_3.properties"/>	
+	<util:properties id="props_auditorium_4" location="classpath:com/cinema/manager/resources/auditorium_4.properties"/>	
+	
+	<util:list id = "auditoriums" >
+	  <ref bean = "props_auditorium_1" />
+	  <ref bean = "props_auditorium_2" />
+	  <ref bean = "props_auditorium_3" />
+	  <ref bean = "props_auditorium_4" />
+	</util:list>
+	
+	<!-- Users -->
+	<util:properties id="props_user_1" location="classpath:com/cinema/manager/resources/user_1.properties"/>	
+	<util:properties id="props_user_2" location="classpath:com/cinema/manager/resources/user_2.properties"/>	
+	<util:properties id="props_user_3" location="classpath:com/cinema/manager/resources/user_3.properties"/>	
+	<util:properties id="props_user_4" location="classpath:com/cinema/manager/resources/user_4.properties"/>	
+	
+	<util:list id = "users" >
+	  <ref bean = "props_user_1" />
+	  <ref bean = "props_user_2" />
+	  <ref bean = "props_user_3" />
+	  <ref bean = "props_user_4" />
+	</util:list>
+	
+	<!-- Events -->
+<!-- 	<util:properties id="props_event_1" location="classpath:com/cinema/manager/resources/event_1.properties"/>	
+	<util:properties id="props_event_2" location="classpath:com/cinema/manager/resources/event_2.properties"/>	
+	<util:properties id="props_event_3" location="classpath:com/cinema/manager/resources/event_3.properties"/>	
+	<util:properties id="props_event_4" location="classpath:com/cinema/manager/resources/event_4.properties"/>	
+	
+	<util:list id = "events" >
+	  <ref bean = "props_event_1" />
+	  <ref bean = "props_event_2" />
+	  <ref bean = "props_event_3" />
+	  <ref bean = "props_event_4" />
+	</util:list> -->
+	
+	
+	<bean id = "event_1" class ="com.cinema.manager.model.Event">
+		<constructor-arg value = "1"/>
+		<constructor-arg value = "The Martian"/>
+		<constructor-arg value = "2015-11-18 18:00:00.0"/>
+		<constructor-arg value = "HIGH"/>
+		<constructor-arg value = "1"/>
+	</bean>
+	
+	<bean id = "event_2" class ="com.cinema.manager.model.Event">
+		<constructor-arg value = "2"/>
+		<constructor-arg value = "The Wolk"/>
+		<constructor-arg value = "2015-11-3 18:00:00.0"/>
+		<constructor-arg value = "MIDDLE"/>
+		<constructor-arg value = "2"/>
+	</bean>
+	
+	<bean id = "event_3" class ="com.cinema.manager.model.Event">
+		<constructor-arg value = "3"/>
+		<constructor-arg value = "Macbeth"/>
+		<constructor-arg value = "2015-11-22 18:00:00.0"/>
+		<constructor-arg value = "MIDDLE"/>
+		<constructor-arg value = "4"/>
+	</bean>
+	
+	<bean id = "event_4" class ="com.cinema.manager.model.Event">
+		<constructor-arg value = "4"/>
+		<constructor-arg value = "Spectre"/>
+		<constructor-arg value = "2015-11-27 18:00:00.0"/>
+		<constructor-arg value = "LOW"/>
+		<constructor-arg value = "3"/>
+	</bean>
+	
+	<util:map id = "eventsMap">
+		<entry key = "1"  value-ref="event_1" />
+		<entry key = "2"  value-ref="event_2" />
+		<entry key = "3"  value-ref="event_3" />
+		<entry key = "4"  value-ref="event_4" />
+	</util:map>
+	
+	
+	<!-- Tickets -->
+	<!-- <util:properties id="props_ticket_1" location="classpath:com/cinema/manager/resources/ticket_1.properties"/>	
+	<util:properties id="props_ticket_2" location="classpath:com/cinema/manager/resources/ticket_2.properties"/>	
+	<util:properties id="props_ticket_3" location="classpath:com/cinema/manager/resources/ticket_3.properties"/>	
+	<util:properties id="props_ticket_4" location="classpath:com/cinema/manager/resources/ticket_4.properties"/>	
+	<util:properties id="props_ticket_5" location="classpath:com/cinema/manager/resources/ticket_5.properties"/>	
+	<util:properties id="props_ticket_6" location="classpath:com/cinema/manager/resources/ticket_6.properties"/>	
+	<util:properties id="props_ticket_7" location="classpath:com/cinema/manager/resources/ticket_7.properties"/>	
+	<util:properties id="props_ticket_8" location="classpath:com/cinema/manager/resources/ticket_8.properties"/>	
+	<util:properties id="props_ticket_9" location="classpath:com/cinema/manager/resources/ticket_9.properties"/>	
+	<util:properties id="props_ticket_10" location="classpath:com/cinema/manager/resources/ticket_10.properties"/>	
+	
+	<util:list id = "tickets" >
+	  <ref bean = "props_ticket_1" />
+	  <ref bean = "props_ticket_2" />
+	  <ref bean = "props_ticket_3" />
+	  <ref bean = "props_ticket_4" />
+	  <ref bean = "props_ticket_5" />
+	  <ref bean = "props_ticket_6" />
+	  <ref bean = "props_ticket_7" />
+	  <ref bean = "props_ticket_8" />
+	  <ref bean = "props_ticket_9" />
+	  <ref bean = "props_ticket_10" />
+	</util:list> -->
+	
+	<bean id = "ticket_1" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "1"/> <!-- id -->
+		<constructor-arg value = "1"/> <!-- eventId -->
+		<constructor-arg value = "3"/> <!-- seat -->
+		<constructor-arg value = "50000"/> <!-- price -->
+	</bean>
+	
+	<bean id = "ticket_2" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "2"/>
+		<constructor-arg value = "1"/>
+		<constructor-arg value = "5"/>
+		<constructor-arg value = "50000"/>
+	</bean>
+	
+	<bean id = "ticket_3" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "3"/>
+		<constructor-arg value = "2"/>
+		<constructor-arg value = "6"/>
+		<constructor-arg value = "30000"/>
+	</bean>
+
+	<bean id = "ticket_4" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "4"/>
+		<constructor-arg value = "1"/>
+		<constructor-arg value = "23"/>
+		<constructor-arg value = "50000"/>
+	</bean>
+	
+	<bean id = "ticket_5" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "5"/>
+		<constructor-arg value = "4"/>
+		<constructor-arg value = "34"/>
+		<constructor-arg value = "40000"/>
+	</bean>	
+
+	<bean id = "ticket_6" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "5"/>
+		<constructor-arg value = "1"/>
+		<constructor-arg value = "24"/>
+		<constructor-arg value = "20000"/>
+	</bean>	
+
+	<bean id = "ticket_7" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "7"/>
+		<constructor-arg value = "1"/>
+		<constructor-arg value = "25"/>
+		<constructor-arg value = "20000"/>
+	</bean>	
+	
+	<bean id = "ticket_8" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "8"/>
+		<constructor-arg value = "1"/>
+		<constructor-arg value = "20"/>
+		<constructor-arg value = "20000"/>
+	</bean>		
+	
+	<bean id = "ticket_9" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "9"/>
+		<constructor-arg value = "1"/>
+		<constructor-arg value = "19"/>
+		<constructor-arg value = "20000"/>
+	</bean>
+		
+	<bean id = "ticket_10" class ="com.cinema.manager.model.Ticket">
+		<constructor-arg value = "10"/>
+		<constructor-arg value = "1"/>
+		<constructor-arg value = "18"/>
+		<constructor-arg value = "20000"/>
+	</bean>	
+	
+	<util:map id = "ticketsMap">
+		<entry key = "1"  value-ref="ticket_1" />
+		<entry key = "2"  value-ref="ticket_2" />
+		<entry key = "3"  value-ref="ticket_3" />
+		<entry key = "4"  value-ref="ticket_4" />
+		<entry key = "5"  value-ref="ticket_5" />
+		<entry key = "6"  value-ref="ticket_6" />
+		<entry key = "7"  value-ref="ticket_7" />
+		<entry key = "8"  value-ref="ticket_8" />
+		<entry key = "9"  value-ref="ticket_9" />
+		<entry key = "10"  value-ref="ticket_10" />
+	</util:map>
+		
+</beans>
