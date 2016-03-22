@@ -51,7 +51,7 @@
 	<util:list id = "demoList">
 		<ref bean = "usersServiceDemo" />
 		<ref bean = "auditoriumServiceDemo" />
-		<ref bean = "bookingServiceDemo" />
+<!-- 		<ref bean = "bookingServiceDemo" /> -->
 		<ref bean = "discountServiceDemo" />
 		<ref bean = "eventServiceDemo" />
 		<ref bean = "ticketServiceDemo" />

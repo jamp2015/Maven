@@ -36,12 +36,12 @@
 			<version>${org.aspectj.aspectjrt}</version>
 		</dependency>
   
-	    <dependency>
+<!-- 	    <dependency>
 	      <groupId>junit</groupId>
 	      <artifactId>junit</artifactId>
 	      <version>3.8.1</version>
 	      <scope>test</scope>
-	    </dependency>
+	    </dependency> -->
 	    
 	    <dependency>
 		  <groupId>junit</groupId>
@@ -102,33 +102,99 @@
 			<artifactId>joda-time</artifactId>
 			<version>2.8.2</version>
 		</dependency>
+		
+		
+		<dependency> 
+    	    <groupId>org.apache.axis</groupId> 
+    	    <artifactId>axis</artifactId> 
+    	    <version>1.4</version> 
+        </dependency>
+		
     
   </dependencies>
   
    <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer>
-                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.cinema.manager.App.java</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>2.5.1</version>
+			      <configuration>
+			          <source>1.7</source>
+			          <target>1.7</target>
+			      </configuration>
+	      		</plugin>
+            
+                 <plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+					  <archive>
+					    <manifest>
+					    	<addClasspath>true</addClasspath>
+							<mainClass>com.cinema.manager.App</mainClass>
+					    </manifest>
+					  </archive>
+					</configuration>
+				</plugin> 
+	
+				<plugin>
+				      <groupId>org.apache.maven.plugins</groupId>
+				      <artifactId>maven-shade-plugin</artifactId>
+				      <version>2.3</version>
+				      <executions>
+				         <!-- Run shade goal on package phase -->
+				        <execution>
+				        <phase>package</phase>
+				        <goals>
+				            <goal>shade</goal>
+				        </goals>
+				        <configuration>
+				          <transformers>
+				             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+				                <mainClass>com.cinema.manager.App</mainClass>
+				             </transformer>
+				             
+					 		<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+							  <resource>META-INF/spring.handlers</resource>
+							</transformer>
+							
+							<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+							  <resource>META-INF/spring.schemas</resource>
+							</transformer>
+							
+				          </transformers>
+				        </configuration>
+				          </execution>
+				      </executions>
+				</plugin>
+	
+				
+	<!-- 			 <plugin>
+				      <artifactId>maven-assembly-plugin</artifactId>
+				      <configuration>
+				        <archive>
+				          <manifest>
+				            <mainClass>com.cinema.manager.App</mainClass>
+				          </manifest>
+				        </archive>
+				        <descriptorRefs>
+				          <descriptorRef>jar-with-dependencies</descriptorRef>
+				        </descriptorRefs>
+				      </configuration>
+				       <executions>
+					      <execution>
+					        <id>1</id>
+					        <phase>package</phase>
+					        <goals>
+					          <goal>single</goal>
+					        </goals>
+					      </execution>
+					    </executions>
+    			</plugin> -->
+    			
+    
         </plugins>
     </build>
-  
 </project>

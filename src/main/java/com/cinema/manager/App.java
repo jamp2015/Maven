@@ -41,36 +41,6 @@ public class App {
 			demo.execute();
 		}
 
-		// Test dao for database
-		/*		AuditoriumDao auditoriumDao = (AuditoriumDao) context.getBean("auditoriumDaoDBImpl");
-		System.out.println(auditoriumDao.getAuditoriums());
-
-		//auditoriumDao.create("Rocket", 400, "1 - 20");
-
-		System.out.println(auditoriumDao.getAuditorium(5));
-		auditoriumDao.delete(4);
-		System.out.println(auditoriumDao.getAuditoriums());
-
-		Auditorium auditorium = auditoriumDao.getAuditorium(5);
-		auditorium.setName("Cinema");
-		auditoriumDao.update(0, auditorium);
-		System.out.println(auditoriumDao.getAuditoriums());*/
-
-		/*		EventDao eventDao = (EventDao) context.getBean("eventDaoDBImpl");
-
-		System.out.println(eventDao.getEvent(1));
-
-		// eventDao.create("Titanic", new Date(), Ratings.HIGH, 2);
-
-		Event event = new Event(0, "Titanic", new Date(), Ratings.HIGH, 3);
-		eventDao.update(3, event);
-
-		System.out.println(eventDao.getByName("Titanic"));
-		eventDao.bookEventAuditorium(1, 3);*/
-
-		BookingDao bookingDao = (BookingDao) context.getBean("bookingDaoDBImpl");
-		bookingDao.delete(1);
-
 		context.close();
 	}
 }
